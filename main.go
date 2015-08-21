@@ -88,8 +88,8 @@ func main() {
 	}
 
 	// Write svg graph
-	width := 1000
-	height := 1000
+	width := 800
+	height := 800
 	hd := float64(height-10)/float64(largest)
 	wd := float64(width-10)/float64(PEDESTALES)
 	file, err := os.Create("graph.svg")
@@ -99,7 +99,7 @@ func main() {
 	canvas := svg.New(file)
 	canvas.Start(width, height)
 	for _, w := range s.s {
-		canvas.Circle(int(float64(w.Index) * wd)+5, height - (int(float64(w.Wins) * hd)+5), 3)
+		canvas.Circle(int(float64(w.Index) * wd)+5, height - (int(float64(w.Wins) * hd)+5), 2)
 	}
 	canvas.End()
 }
