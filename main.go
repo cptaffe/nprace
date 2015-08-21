@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math/rand"
 	"sort"
 	"github.com/ajstarks/svgo"
@@ -11,7 +10,7 @@ import (
 
 const (
 	LOOPS = 100000
-	PEDESTALES = 800
+	PEDESTALES = 400
 )
 
 type Stat struct {
@@ -86,12 +85,11 @@ func main() {
 		if w.Wins > largest {
 			largest = w.Wins
 		}
-		fmt.Printf("%d: %d\n", w.Index, w.Wins);
 	}
 
 	// Write svg graph
-	width := 500
-	height := 500
+	width := 1000
+	height := 1000
 	hd := float64(height-10)/float64(largest)
 	wd := float64(width-10)/float64(PEDESTALES)
 	file, err := os.Create("graph.svg")
@@ -101,7 +99,7 @@ func main() {
 	canvas := svg.New(file)
 	canvas.Start(width, height)
 	for _, w := range s.s {
-		canvas.Circle(int(float64(w.Index) * wd)+5, int(float64(w.Wins) * hd)+5, 2)
+		canvas.Circle(int(float64(w.Index) * wd)+5, height - (int(float64(w.Wins) * hd)+5), 3)
 	}
 	canvas.End()
 }
